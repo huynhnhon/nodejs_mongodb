@@ -1,6 +1,15 @@
 var mg = require('mongoose');
-mg.connect('mongodb://huynhnhon:huynhnhon198@ds019472.mlab.com:19472/learn_nodejs');
+var express = require('express');
+var app = express();
 
+app.use(express.static("public"));
+app.set("view engine", "ejs");
+app.set("views", "./views")
+
+var server = require("http").Server(app);
+server.listen(1998)
+
+mg.connect('mongodb://huynhnhon:huynhnhon198@ds019472.mlab.com:19472/learn_nodejs');
 var db = mg.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
@@ -18,10 +27,14 @@ db.once('open', function () {
 
     var users = mg.model('users', usersSchema);
 
-    users.find({ }, { name: 1, _id:0, age:1} ).exec(function(err,Result){
-        var NameArray = Result;
-        console.log(NameArray);
-      })
+    app.get("/", (req,res)=>{
+        users.find({ }, { name: 1, _id:0, age:1} ).exec(function(err,Result){
+            res.render("home.ejs");
+            var NameArray = Result;
+            res.render("home.ejs", {array: NameArray});
+        })
+    })
+    
 
     // var newUsers = new users({
     //     name: 'Hoai',
