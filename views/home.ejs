@@ -1,11 +1,36 @@
 <% include header.ejs %>
     <div class="main">
-        <% array.forEach((i)=>{ %>
-            <div class="alert alert-success" role="alert">
-                HELLO WORLD... My name is
-                <%= i.name %> - <%= i.age %> years old
-            </div>
-        <% }) %>
+        <table id="view" class="table table-bordered table-dark">
+            <thead>
+                <tr style="color: #59ff7f">
+                    <th>STT</th>
+                    <th>TÊN</th>
+                    <th>TUỔI</th>
+                    <th class="date-head">THỜI GIAN TẠO</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <% var stt = 0 %>
+                    <% array.forEach((i)=>{ %>                    
+                    <% stt++ %>
+                    <% var d = i.date.getDate() %>
+                    <% if(d<10) d="0"+ d %>
+                    <% var mo = i.date.getMonth() + 1 %>
+                    <% if(mo<10) mo="0"+ mo %>
+                    <% var h = i.date.getHours() %>
+                    <% if(h<10) h="0"+ h %>
+                    <% var m = i.date.getMinutes() %>
+                    <% if(m<10) m="0"+ m %>
+                    <tr>
+                        <td  data-popup-open="popup-1"><%= stt %></td>
+                        <td id="name"  data-popup-open="popup-1"><%= i.name %></td>
+                        <td id="age"  data-popup-open="popup-1"><%= i.age %></td>
+                        <td id="date"  data-popup-open="popup-1"><%= h %>:<%= m %>-<%= d %>/<%= mo%>/<%= i.date.getFullYear() %></td>
+                        <td style="display: none" id="image"><%= i.image %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
     </div>
 
-<% include footer.ejs %>
+    <% include footer.ejs %>
