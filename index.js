@@ -29,7 +29,6 @@ db.once('open', function () {
 
     app.get("/", (req,res)=>{
         users.find({ }, { name: 1, _id:0, age:1} ).exec(function(err,Result){
-            res.render("home.ejs");
             var NameArray = Result;
             res.render("home.ejs", {array: NameArray});
         })
@@ -46,3 +45,9 @@ db.once('open', function () {
     // });
 
 });
+        // proxy_pass http://localhost:1998;
+        // proxy_http_version 1.1;
+        // proxy_set_header Upgrade $http_upgrade;
+        // proxy_set_header Connection 'upgrade';
+        // proxy_set_header Host $host;
+        // proxy_cache_bypass $http_upgrade;

@@ -1,0 +1,12 @@
+.main {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: rgb(220, 220, 220) solid 1px;
+    border-radius: 4px
+}
+.footer{
+    height: 100px;
+    background: #141414;
+    margin-bottom: 10px
+}
