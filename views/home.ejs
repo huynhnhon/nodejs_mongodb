@@ -9,7 +9,7 @@
                     <th class="date-head">THỜI GIAN TẠO</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="list">
                     <% var stt = 0 %>
                     <% array.forEach((i)=>{ %>                    
                     <% stt++ %>
@@ -27,6 +27,7 @@
                         <td id="age"  data-popup-open="popup-1"><%= i.age %></td>
                         <td id="date"  data-popup-open="popup-1"><%= h %>:<%= m %>-<%= d %>/<%= mo%>/<%= i.date.getFullYear() %></td>
                         <td style="display: none" id="image"><%= i.image %></td>
+                        <td style="display: none" id="ID"><%= i._id %></td>
                     </tr>
                 <% }) %>
             </tbody>
