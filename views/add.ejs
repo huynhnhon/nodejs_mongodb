@@ -1,31 +1,39 @@
 <% include header.ejs %>
-    
+
     <div class="row content">
         <div class="col-sm-8">
             <div class="main">
                 <form method="POST">
                     <div class="form-group form-inline">
-                        <input required type="text" class="form-control" placeholder="Enter name" name="name">
+                        <input required type="text" class="form-control" placeholder="product-code" name="code">
+                        <input required type="text" class="form-control" placeholder="product-name" name="name" id="name">
                     </div>
                     <div class="form-group form-inline">
-                        <input required type="number" class="form-control" placeholder="Enter age" name="age">
+                        <input required type="number" class="form-control" placeholder="quantity" name="quantity">
+                        <input required type="number" class="form-control" placeholder="price" name="price" id="price">
+                        <span class="input-group-addon">VNĐ</span>
                     </div>
                     <div class="form-group form-inline">
-                        <input type="text" class="form-control" placeholder="Enter imagelink" id="link-image" name="image">
-                        <a class="check">CHECK</a>
+                        <input required type="text" class="form-control" placeholder="unit" name="unit">
+                        <input required type="text" class="form-control" placeholder="category" name="cate" id="cate">
+
                     </div>
-                    <button type="submit" id="submit" class="btn btn-success">SUBMIT</button>
+
+                    <div class="form-group form-inline">
+                        <input type="text" class="form-control" placeholder="Enter image-link" id="linkimage" name="image">
+                    </div>
+                    <div style="margin-bottom: 0px" class="form-group form-inline">
+                        <a class="check image">CHECK IMAGE</a>
+                        <a class="check reset" style="background: #e02424; font-weight: 700">RESET</a>
+                        <button type="submit" id="submit" class="btn btn-success">SUBMIT</button>
+                    </div>
                 </form>
             </div>
         </div>
         <div class="col-sm-4 sidenav">
             <div class="main">
-                <img id="preview" src="http://hdimages.org/wp-content/uploads/2017/03/placeholder-image4.jpg" width="100%">
+                <img id="preview" src="image/placeholder.jpg" width="100%">
             </div>
         </div>
     </div>
-
-
-
-
     <% include footer.ejs %>

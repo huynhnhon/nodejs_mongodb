@@ -23,31 +23,65 @@ var socket = io('http://localhost:1998')
 //     socket.emit('send-list');
 // })
 
+
 $(document).ready(function () {
 
     $('#view').DataTable();  
     $('.sorting_asc').click();
-    $('.check').click(() => {
-        var link = $('#link-image').val();
+    $('a.image').click(() => {
+        var link = $('#linkimage').val();
         $('#preview').attr('src', link)
     })
 
-    $('.form-control').keydown(function (e) {
-        if (e.which === 13) {
-            var index = $('.form-control').index(this) + 1;
-            $('.form-control').eq(index).focus();
-        }
-    });
-
-    $('#link-image').keydown(function (e) {
-        if (e.which === 13) {
-            $('a.check').click()
-        }
+    $('a.reset').click(() => {
+        $('form').find("input[type=text], textarea, input[type=number]").val("");
     })
 
-    $('form input').on('keypress', function (e) {
-        return e.which !== 13;
+    $('form input').keydown(function (e) {
+        if (e.keyCode == 13) {
+            var inputs = $(this).parents("form").eq(0).find(":input");
+            if (inputs[inputs.index(this) + 1] != null) {                    
+                inputs[inputs.index(this) + 1].focus();
+            }
+            e.preventDefault();
+            return false;
+        }
     });
+    var array =[];
+
+
+    socket.emit('send-suggest');
+        
+    
+    socket.on('list-suggest', function(danhsach){
+        $.each(danhsach, function(ind,i) {
+            array.push(i.name)
+        })
+        console.log(array)
+        // console.log(danhsach)
+    })
+
+    $( "#cate" ).autocomplete({
+        source: array
+      });
+    // $('form input').on('keypress', function (e) {
+    //     return e.which !== 13;
+    // });
+
+    // $('.form-control').keydown(function (e) {
+    //     if (e.which === 13) {
+    //         var index = $('.form-control').index(this) + 1;
+    //         $('.form-control').eq(index).focus();
+    //     }
+    // });
+
+    // $('#link-image').keydown(function (e) {
+    //     if (e.which === 13) {
+    //         $('a.check').click()
+    //     }
+    // })
+
+    
 
     $(function () {
         //----- OPEN
@@ -57,12 +91,13 @@ $(document).ready(function () {
             e.preventDefault();            
                 var name = $(this).parent().find('td#name').text();
                 $('.pop-n').text(name)
-                var age = $(this).parent().find('td#age').text();
-                $('.pop-a').text(age)
+                var unit = $(this).parent().find('td#unit').text();
+                $('.pop-u').text(" "+ unit)
+                var quantity = $(this).parent().find('td#quantity').text();
+                $('.pop-q').text(quantity)
                 var image = $(this).parent().find('td#image').text();
                 $('.pop-i').attr('src', image)
-                var id = $(this).parent().find('td#ID').text();
-                $('.pop-id').text(id)            
+             
         });
 
         //----- CLOSE

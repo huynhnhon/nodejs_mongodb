@@ -4,11 +4,16 @@
             <thead>
                 <tr style="color: #59ff7f">
                     <th>STT</th>
-                    <th>TÊN</th>
-                    <th>TUỔI</th>
-                    <th class="date-head">THỜI GIAN TẠO</th>
+                    <th>CODE</th>
+                    <th>TÊN SẢN PHẨM</th>
+                    <th>THỜI GIAN NHẬP</th>
+                    <th>GIÁ THÀNH</th>
+                    <th>SỐ LƯỢNG</th>
+                    <th>LOẠI SẢN PHẨM</th>
+                    <th>ĐƠN VỊ</th>
+                    <th>MÔ TẢ</th>
                     <!-- <th style="display: none">IMAGE</th> -->
-                    <th style="display: none">ID</th>
+                    <th>ID</th>
                 </tr>
             </thead>
             <tbody class="list">
@@ -25,11 +30,16 @@
                     <% if(m<10) m="0"+ m %>
                     <tr>
                         <td><%= stt %></td>
-                        <td id="name"  data-popup-open="popup-1"><%= i.name %></td>
-                        <td id="age"  data-popup-open="popup-1"><%= i.age %></td>
+                        <td id="code"  data-popup-open="popup-1"><%= i.product_code %></td>
+                        <td id="name"  data-popup-open="popup-1"><%= i.product_name %></td>
                         <td id="date"  data-popup-open="popup-1"><%= h %>:<%= m %>-<%= d %>/<%= mo%>/<%= i.date.getFullYear() %></td>
                         <!-- <td style="display: none" id="image"><%= i.image %></td> -->
-                        <td style="display: none" id="ID"><%= i._id %></td>
+                        <td id="price"  data-popup-open="popup-1"><%= i.price_each %> VNĐ</td>
+                        <td id="quantity"  data-popup-open="popup-1"><%= i.quantity_in_stock %></td>
+                        <td id="cate"  data-popup-open="popup-1"><%= i.category %></td>
+                        <td id="unit"  data-popup-open="popup-1"><%= i.unit %></td>
+                        <td id="image"  data-popup-open="popup-1"><%= i.link_image %></td>
+                        <td id="ID"><%= i._id %></td>
                     </tr>
                 <% }) %>
             </tbody>

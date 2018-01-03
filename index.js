@@ -22,58 +22,67 @@ db.once('open', function () {
     // we're connected!
     console.log("connected");
 
-    var usersSchema = mg.Schema({
-
-        name: String,
-        age: Number,
-        image: String,
+    var productSchema = mg.Schema({
+        product_code: String,
+        product_name: String,
+        unit: String,
+        category: String,
+        quantity_in_stock: Number,
+        price_each: Number,
+        link_image: String,
         date: Date
     });
 
-    var users = mg.model('users', usersSchema);
+    var products = mg.model('users', productSchema);
 
-    var danhsach;
-
-    io.on('connection', function (socket) {
-        socket.on('send-list', function(){
-            users.find({}, {
-                name: 1,
-                _id: 1,
-                age: 1,
-                image: 1,
-                date: 1
+     io.on('connection', function (socket) {
+        socket.on('send-suggest', function () {
+            products.find({}, {
+                category: 1,
+                _id: 0
             }).exec(function (err, Result) {
-                danhsach = Result;
-                socket.emit('list', danhsach)
+                var danhsach = Result;
+                socket.emit('list-suggest', danhsach)
             })
-            
         })
     })
 
     app.post("/add", urlencodedParser, (req, res) => {
-        var n = req.body.name;
-        var a = req.body.age;
-        var i = req.body.image;
+        var code = req.body.code;
+        var name = req.body.name;
+        var quantity = req.body.quantity;
+        var price = req.body.price;
+        var unit = req.body.unit;
+        var cate = req.body.cate;
+        var image = req.body.image;
 
-        var newUsers = new users({
-            name: n,
-            age: a,
-            image: i,
+        var newProduct = new products({
+            product_code: code,
+            product_name: name,
+            unit: unit,
+            category: cate,
+            quantity_in_stock: quantity,
+            price_each: price,
+            link_image: image,
             date: Date.now()
         });
 
-        newUsers.save(function (err, doc) {
+        newProduct.save(function (err, doc) {
             if (err) throw err;
             res.redirect("/add")
         });
 
     });
     app.get("/", (req, res) => {
-        users.find({}, {
-            name: 1,
+        products.find({}, {
             _id: 1,
-            age: 1,
-            image: 1,
+            product_code: 1,
+            product_name: 1,
+            unit: 1,
+            category: 1,
+            quantity_in_stock: 1,
+            price_each: 1,
+            link_image: 1,
             date: 1
         }).exec(function (err, Result) {
             var list = Result;
@@ -83,7 +92,7 @@ db.once('open', function () {
         })
     })
 
-    app.get("/add", (req, res) => {        
+    app.get("/add", (req, res) => {
         res.render('add')
     })
     // var newUsers = new users({

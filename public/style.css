@@ -1,33 +1,49 @@
-@media (max-width: 350px) {
-    .popup-inner {
-        max-width: 210px !important;
-        padding: 9px !important
+
+@media (min-width: 1200px) {
+    img#preview {
+    height: 253px;
+}
+    input#name {
+        margin-left: auto;
+        width: 70%
     }
-    td#date,
-    th.date-head {
-        display: none
+    input#price {
+        margin-left: 12px;
+        border-bottom-right-radius: 0px;
+        border-top-right-radius: 0px;
     }
-    span.power {
-        padding: 18px !important;
+    input#cate {
+        margin-left: 12px;
+        width: 37%
+    }
+    input#linkimage {
+        width: 67%
     }
 }
+
 body {
     background-image: url(https://tuhoc247.com/wp-content/uploads/2017/12/bg.jpg);
     background-repeat: repeat;
 }
+.row.content{
+    margin-top: 20px;
+}
 
-table#view{
+table#view {
     background: #0c0c0c;
     font-family: 'Nunito', sans-serif;
     color: #fff
 }
-.table-bordered td, .table-bordered th {
+
+.table-bordered td,
+.table-bordered th {
     border: 1px solid #1b1b1b !important
 }
 
-div.dataTables_wrapper div.dataTables_filter label{
+div.dataTables_wrapper div.dataTables_filter label {
     text-align: unset !important
 }
+
 .main {
     background: #ffffff5e;
     margin-top: 20px;
@@ -37,29 +53,135 @@ div.dataTables_wrapper div.dataTables_filter label{
     border-radius: 4px
 }
 
-.footer {
-    height: 100px;
-    background: #141414;
-    margin-bottom: 10px
+footer {
+    position: fixed;
+    bottom: 0;
+}
+
+.footer-distributed {
+    background-color: #292c2f;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+    font: normal 16px sans-serif;
+    padding: 45px 50px;
+    margin-top: 100px;
+}
+
+.footer-distributed .footer-left p {
+    color: #8f9296;
+    font-size: 14px;
+    margin: 0;
+}
+
+
+/* Footer links */
+
+.footer-distributed p.footer-links {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 0 0 10px;
+    padding: 0;
+}
+
+.footer-distributed p.footer-links a {
+    display: inline-block;
+    line-height: 1.8;
+    text-decoration: none;
+    color: inherit;
+}
+
+.footer-distributed .footer-right {
+    float: right;
+    margin-top: 6px;
+    max-width: 180px;
+}
+
+.footer-distributed .footer-right a {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    background-color: #33383b;
+    border-radius: 2px;
+    font-size: 20px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 35px;
+    margin-left: 3px;
+}
+
+
+/* If you don't want the footer to be responsive, remove these media queries */
+
+
+@media (max-width: 600px) {
+    .footer-distributed .footer-left,
+    .footer-distributed .footer-right {
+        text-align: center;
+    }
+    .footer-distributed .footer-right {
+        float: none;
+        margin: 0 auto 20px;
+    }
+    .footer-distributed .footer-left p.footer-links {
+        line-height: 1.8;
+    }
+    .popup-inner {
+        max-width: 210px !important;
+        padding: 9px !important
+    }
+    .input-group-addon{
+        display: none !important
+    }
+    span.power {
+        padding: 18px !important;
+    }
+    button#submit {
+        right: 26px;
+        position: absolute;
+    }
+    .reset {
+        display: none !important
+    }
+}
+
+span.dtr-title {
+    color: #30e058
+}
+
+li.nav-item {
+    border: #2c69ab solid 1px;
+    border-collapse: collapse !important;
+}
+
+@media (max-height:800px) {
+    footer {
+        position: static;
+    }
+    header {
+        padding-top: 40px;
+    }
 }
 
 a.check {
-    margin-left: 10px;
-    padding: 6px;
+    margin-right: 10px;
+    padding: 7px;
+    border-radius: 5px;
     background: #288bf5;
-    color: white !important
+    color: white !important;
 }
 
-input.form-control {
+
+/* input.form-control {
     width: 60% !important;
-}
+} */
 
 span.power {
     float: right;
     padding: 37px;
 }
-
-
 
 
 /* popup */
