@@ -1,12 +1,14 @@
 <% include header.ejs %>
     <div class="main">
-        <table id="view" class="table table-bordered table-dark">
+        <table id="view" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
             <thead>
                 <tr style="color: #59ff7f">
                     <th>STT</th>
                     <th>TÊN</th>
                     <th>TUỔI</th>
                     <th class="date-head">THỜI GIAN TẠO</th>
+                    <!-- <th style="display: none">IMAGE</th> -->
+                    <th style="display: none">ID</th>
                 </tr>
             </thead>
             <tbody class="list">
@@ -22,11 +24,11 @@
                     <% var m = i.date.getMinutes() %>
                     <% if(m<10) m="0"+ m %>
                     <tr>
-                        <td  data-popup-open="popup-1"><%= stt %></td>
+                        <td><%= stt %></td>
                         <td id="name"  data-popup-open="popup-1"><%= i.name %></td>
                         <td id="age"  data-popup-open="popup-1"><%= i.age %></td>
                         <td id="date"  data-popup-open="popup-1"><%= h %>:<%= m %>-<%= d %>/<%= mo%>/<%= i.date.getFullYear() %></td>
-                        <td style="display: none" id="image"><%= i.image %></td>
+                        <!-- <td style="display: none" id="image"><%= i.image %></td> -->
                         <td style="display: none" id="ID"><%= i._id %></td>
                     </tr>
                 <% }) %>

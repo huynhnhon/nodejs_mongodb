@@ -86,8 +86,6 @@ db.once('open', function () {
     app.get("/add", (req, res) => {        
         res.render('add')
     })
-
-
     // var newUsers = new users({
     //     name: 'Hoai',
     //     age: 20

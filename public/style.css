@@ -11,7 +11,18 @@
         padding: 18px !important;
     }
 }
+table#view{
+    background: #0c0c0c;
+    font-family: 'Nunito', sans-serif;
+    color: #fff
+}
+.table-bordered td, .table-bordered th {
+    border: 1px solid #1b1b1b !important
+}
 
+div.dataTables_wrapper div.dataTables_filter label{
+    text-align: unset !important
+}
 .main {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -43,11 +54,6 @@ span.power {
 }
 
 
-tbody {
-    height: 200px;
-    overflow-y: auto;
-    width: 100%;
-}
 
 
 /* popup */

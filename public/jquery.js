@@ -1,29 +1,32 @@
 var socket = io('http://localhost:1998')
 
-socket.on('list', function (list) {
-    $('tbody.list').html('');
-    var stt = 0;
-    $.each(list, function(ind,i) {
-        var date = new Date(i.date)
-        stt++;  
-        var d = date.getDate();
-        if (d < 10) d = "0" + d;
-        var mo = date.getMonth() + 1;
-        if (mo < 10) mo = "0" + mo;
-        var h = date.getHours();
-        if (h < 10) h = "0" + h;
-        var m = date.getMinutes();
-        if (m < 10) m = "0" + m;
-        $('tbody.list').append("<tr><td  data-popup-open='popup-1'>" + stt + "</td><td id='name'  data-popup-open='popup-1'>" + i.name + "</td><td id='age'  data-popup-open='popup-1'>" + i.age + "</td><td id='date'  data-popup-open='popup-1'>" + h + ":" + m + "-" + d + "/" + mo + "/" + date.getFullYear() + "</td><td style='display: none' id='image'>" + i.image + "</td><td style='display: none' id='ID'>" + i._id + "</td></tr>")
-    });
-})
+// socket.on('list', function (list) {
+//     $('tbody.list').html('');
+//     var stt = 0;
+//     $.each(list, function(ind,i) {
+//         var date = new Date(i.date)
+//         stt++;  
+//         var d = date.getDate();
+//         if (d < 10) d = "0" + d;
+//         var mo = date.getMonth() + 1;
+//         if (mo < 10) mo = "0" + mo;
+//         var h = date.getHours();
+//         if (h < 10) h = "0" + h;
+//         var m = date.getMinutes();
+//         if (m < 10) m = "0" + m;
+//         $('tbody.list').append("<tr><td  data-popup-open='popup-1'>" + stt + "</td><td id='name'  data-popup-open='popup-1'>" + i.name + "</td><td id='age'  data-popup-open='popup-1'>" + i.age + "</td><td id='date'  data-popup-open='popup-1'>" + h + ":" + m + "-" + d + "/" + mo + "/" + date.getFullYear()) // + "</td><td style='display: none' id='image'>" + i.image + "</td><td style='display: none' id='ID'>" + i._id + "</td></tr>")
+//         $('#view').DataTable();  
+//     });
+// })
 
-$(window).on('focus', function () {
-    socket.emit('send-list');
-})
+// $(window).on('focus', function () {
+//     socket.emit('send-list');
+// })
 
 $(document).ready(function () {
 
+    $('#view').DataTable();  
+    $('.sorting_asc').click();
     $('.check').click(() => {
         var link = $('#link-image').val();
         $('#preview').attr('src', link)
