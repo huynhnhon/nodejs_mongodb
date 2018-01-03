@@ -11,6 +11,11 @@
         padding: 18px !important;
     }
 }
+body {
+    background-image: url(https://tuhoc247.com/wp-content/uploads/2017/12/bg.jpg);
+    background-repeat: repeat;
+}
+
 table#view{
     background: #0c0c0c;
     font-family: 'Nunito', sans-serif;
@@ -24,6 +29,7 @@ div.dataTables_wrapper div.dataTables_filter label{
     text-align: unset !important
 }
 .main {
+    background: #ffffff5e;
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 10px;
