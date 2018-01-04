@@ -25,8 +25,8 @@ var socket = io('http://localhost:1998')
 
 
 $(document).ready(function () {
-    
-
+    // Set up the number formatting.      
+    $('.price').number(true, 0);
     $('#view').DataTable();
     $('.sorting_asc').click();
     $('a.image').click(() => {
@@ -42,7 +42,7 @@ $(document).ready(function () {
     })
 
     $('form input').keydown(function (e) {
-        if ((e.keyCode == 13) || (e.keyCode == 39)) {
+        if ((e.keyCode == 13)) {
             var inputs = $(this).parents("form").eq(0).find(":input");
             if (inputs[inputs.index(this) + 1] != null) {
                 inputs[inputs.index(this) + 1].focus();

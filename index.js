@@ -1,6 +1,7 @@
 var mg = require('mongoose');
 var bodyParser = require('body-parser')
 var express = require('express');
+var multer = require('multer');
 
 var urlencodedParser = bodyParser.urlencoded({
     extended: false
@@ -50,7 +51,20 @@ db.once('open', function () {
         })
     })
 
-    app.post("/add", urlencodedParser, (req, res) => {
+    var storage = multer.diskStorage({
+        destination: function(req,file,cb){
+            cb(null, "./public/image")
+        },
+        filename: function(req,file,cb){
+            var name = req.body.name;
+            var code = req.body.code;
+            cb(null, name +"-"+ code + ".jpg")
+        }
+    })
+    
+    var upload = multer({storage: storage})
+    
+    app.post("/add",upload.single("upload"), urlencodedParser, function(req,res) {
         var code = req.body.code;
         var name = req.body.name;
         var quantity = req.body.quantity;
@@ -58,12 +72,17 @@ db.once('open', function () {
         var unit = req.body.unit;
         var cate = req.body.cate;
         var image = req.body.image;
-
+        if(!image || image == ""){
+            image = "image/"+ req.file.filename;
+        }else{
+            image=image
+        }
+        price = price.replace(/,/g, "");
         var newProduct = new products({
-            product_code: code,
-            product_name: name,
-            unit: unit,
-            category: cate,
+            product_code: code.toUpperCase(),
+            product_name: name.toUpperCase(),
+            unit: unit.toUpperCase(),
+            category: cate.toUpperCase(),
             quantity_in_stock: quantity,
             price_each: price,
             link_image: image,
@@ -96,7 +115,8 @@ db.once('open', function () {
     })
 
     app.get("/add", (req, res) => {
-        res.render('add')
+        res.render('add');
+        // res.redirect(req.get('/'))
     })
     // var newUsers = new users({
     //     name: 'Hoai',

@@ -3,14 +3,14 @@
     <div class="row content">
         <div class="col-sm-8">
             <div class="main">
-                <form method="POST">
+                <form method="POST"  enctype="multipart/form-data">
                     <div class="form-group form-inline">
                         <input required type="text" class="form-control" placeholder="product-code" name="code" id="code">
                         <input required type="text" class="form-control" placeholder="product-name" name="name" id="name">
                     </div>
                     <div class="form-group form-inline">
                         <input required type="number" class="form-control" placeholder="quantity" name="quantity">
-                        <input required type="number" class="form-control" placeholder="price" name="price" id="price">
+                        <input required type="text" class="form-control price" placeholder="price" name="price">
                         <span class="input-group-addon">VNĐ</span>
                     </div>
                     <div class="form-group form-inline">
@@ -19,8 +19,12 @@
 
                     </div>
 
-                    <div class="form-group form-inline">
-                        <input type="text" class="form-control" placeholder="Enter image-link" id="linkimage" name="image">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Enter image-link online" id="linkimage" name="image">
+                        <div style="margin-top: 16px">
+                            <a class="title-upload">OR UPLOAD:</a>
+                            <input type="file" name="upload" id="upload">
+                        </div>
                     </div>
                     <div style="margin-bottom: 0px" class="form-group form-inline">
                         <a class="check image">CHECK IMAGE</a>
