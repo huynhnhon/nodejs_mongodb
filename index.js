@@ -35,10 +35,13 @@ db.once('open', function () {
 
     var products = mg.model('users', productSchema);
 
-     io.on('connection', function (socket) {
+    io.on('connection', function (socket) {
         socket.on('send-suggest', function () {
             products.find({}, {
                 category: 1,
+                product_code: 1,
+                product_name: 1,
+                unit: 1,
                 _id: 0
             }).exec(function (err, Result) {
                 var danhsach = Result;

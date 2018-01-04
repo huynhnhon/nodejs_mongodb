@@ -25,10 +25,7 @@ var socket = io('http://localhost:1998')
 
 
 $(document).ready(function () {
-    var sg_code = new Array();
-    var sg_name = new Array();
-    var sg_unit = new Array();
-    var sg_cate = new Array();
+    
 
     $('#view').DataTable();
     $('.sorting_asc').click();
@@ -63,7 +60,10 @@ $(document).ready(function () {
     });
 
     socket.emit('send-suggest');
-
+    var sg_code = [];
+    var sg_name = [];
+    var sg_unit = [];
+    var sg_cate = [];
     socket.on('list-suggest', function (danhsach) {
 
         $.each(danhsach, function (ind, i) {
@@ -72,9 +72,13 @@ $(document).ready(function () {
             sg_unit.push(i.unit);
             sg_cate.push(i.category);
         })
+        sg_code = jQuery.unique(sg_code);
+        sg_name = jQuery.unique(sg_name);
+        sg_unit = jQuery.unique(sg_unit);
+        sg_cate = jQuery.unique(sg_cate);
     })
 
-    $("#code").autocomplete({
+    $("input#code").autocomplete({
         source: sg_code
     });
     $("#name").autocomplete({
