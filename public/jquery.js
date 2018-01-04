@@ -25,12 +25,19 @@ var socket = io('http://localhost:1998')
 
 
 $(document).ready(function () {
+    var sg_code = new Array();
+    var sg_name = new Array();
+    var sg_unit = new Array();
+    var sg_cate = new Array();
 
-    $('#view').DataTable();  
+    $('#view').DataTable();
     $('.sorting_asc').click();
     $('a.image').click(() => {
         var link = $('#linkimage').val();
-        $('#preview').attr('src', link)
+        console.log(link.lenght);
+        if (link.lenght !== 0) {
+            $('#preview').attr('src', link)
+        }
     })
 
     $('a.reset').click(() => {
@@ -38,32 +45,47 @@ $(document).ready(function () {
     })
 
     $('form input').keydown(function (e) {
-        if (e.keyCode == 13) {
+        if ((e.keyCode == 13) || (e.keyCode == 39)) {
             var inputs = $(this).parents("form").eq(0).find(":input");
-            if (inputs[inputs.index(this) + 1] != null) {                    
+            if (inputs[inputs.index(this) + 1] != null) {
                 inputs[inputs.index(this) + 1].focus();
             }
+
             e.preventDefault();
             return false;
         }
+        if (e.keyCode == 37) {
+            var inputs = $(this).parents("form").eq(0).find(":input");
+            if (inputs[inputs.index(this) - 1] != null) {
+                inputs[inputs.index(this) - 1].focus();
+            }
+        }
     });
-    var array =[];
-
 
     socket.emit('send-suggest');
-        
-    
-    socket.on('list-suggest', function(danhsach){
-        $.each(danhsach, function(ind,i) {
-            array.push(i.name)
+
+    socket.on('list-suggest', function (danhsach) {
+
+        $.each(danhsach, function (ind, i) {
+            sg_code.push(i.product_code);
+            sg_name.push(i.product_name);
+            sg_unit.push(i.unit);
+            sg_cate.push(i.category);
         })
-        console.log(array)
-        // console.log(danhsach)
     })
 
-    $( "#cate" ).autocomplete({
-        source: array
-      });
+    $("#code").autocomplete({
+        source: sg_code
+    });
+    $("#name").autocomplete({
+        source: sg_name
+    });
+    $("#unit").autocomplete({
+        source: sg_unit
+    });
+    $("#cate").autocomplete({
+        source: sg_cate
+    });
     // $('form input').on('keypress', function (e) {
     //     return e.which !== 13;
     // });
@@ -81,23 +103,23 @@ $(document).ready(function () {
     //     }
     // })
 
-    
+
 
     $(function () {
         //----- OPEN
-        $('.main').on('click','[data-popup-open]', function (e) {
+        $('.main').on('click', '[data-popup-open]', function (e) {
             var targeted_popup_class = jQuery(this).attr('data-popup-open');
             $('[data-popup=' + targeted_popup_class + ']').fadeIn(550);
-            e.preventDefault();            
-                var name = $(this).parent().find('td#name').text();
-                $('.pop-n').text(name)
-                var unit = $(this).parent().find('td#unit').text();
-                $('.pop-u').text(" "+ unit)
-                var quantity = $(this).parent().find('td#quantity').text();
-                $('.pop-q').text(quantity)
-                var image = $(this).parent().find('td#image').text();
-                $('.pop-i').attr('src', image)
-             
+            e.preventDefault();
+            var name = $(this).parent().find('td#name').text();
+            $('.pop-n').text(name)
+            var unit = $(this).parent().find('td#unit').text();
+            $('.pop-u').text(" " + unit)
+            var quantity = $(this).parent().find('td#quantity').text();
+            $('.pop-q').text(quantity)
+            var image = $(this).parent().find('td#image').text();
+            $('.pop-i').attr('src', image)
+
         });
 
         //----- CLOSE
