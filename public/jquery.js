@@ -32,7 +32,9 @@ $(document).ready(function () {
     $('a.image').click(() => {
         var link = $('#linkimage').val();
         console.log(link.lenght);
-        if (link.lenght !== 0) {
+        if (!link) {
+            
+        }else{
             $('#preview').attr('src', link)
         }
     })
