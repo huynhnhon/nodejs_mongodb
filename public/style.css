@@ -209,11 +209,19 @@ span.power {
 
 
 /* Inner */
+a.pop-n,a.pop-q {
+    font-family: nunito;
+    font-weight: 700;
+    color: #0e60b7 !important;
+}
+a.pop-q{
+    color: #b90012 !important;
+}
 
 .popup-inner {
     max-width: 570px;
     width: 90%;
-    padding: 40px;
+    padding: 0px 30px 17px 30px;
     position: absolute;
     top: 50%;
     left: 50%;
