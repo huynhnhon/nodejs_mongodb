@@ -52,19 +52,32 @@ db.once('open', function () {
     })
 
     var storage = multer.diskStorage({
-        destination: function(req,file,cb){
+        destination: function (req, file, cb) {
             cb(null, "./public/image")
         },
-        filename: function(req,file,cb){
+        filename: function (req, file, cb) {
             var name = req.body.name;
             var code = req.body.code;
-            cb(null, name +"-"+ code + ".jpg")
+            name = name.toLowerCase();
+            name = name.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+            name = name.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+            name = name.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+            name = name.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+            name = name.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+            name = name.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+            name = name.replace(/đ/g, "d");
+            name = name.replace(/ + /g," ");
+            name = name.replace(/ /g,"-");
+            name = name.trim(); 
+            cb(null, name + "-" + code + ".jpg")
         }
     })
-    
-    var upload = multer({storage: storage})
-    
-    app.post("/add",upload.single("upload"), urlencodedParser, function(req,res) {
+
+    var upload = multer({
+        storage: storage
+    })
+
+    app.post("/add", upload.single("upload"), urlencodedParser, function (req, res) {
         var code = req.body.code;
         var name = req.body.name;
         var quantity = req.body.quantity;
@@ -72,10 +85,10 @@ db.once('open', function () {
         var unit = req.body.unit;
         var cate = req.body.cate;
         var image = req.body.image;
-        if(!image || image == ""){
-            image = "image/"+ req.file.filename;
-        }else{
-            image=image
+        if (!image || image == "") {
+            image = "image/" + req.file.filename;
+        } else {
+            image = image
         }
         price = price.replace(/,/g, "");
         var newProduct = new products({
