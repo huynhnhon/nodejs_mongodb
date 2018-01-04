@@ -9,23 +9,25 @@
     }
 
     img#preview {
-    height: 253px;
+    height: 299px;
 }
     input#name {
         margin-left: auto;
-        width: 70%
+        width: 65%
     }
     .price {
-        margin-left: 12px;
-        border-bottom-right-radius: 0px;
-        border-top-right-radius: 0px;
+        width: 29.5% !important;
+        margin-left: 14px;
     }
     input#cate {
-        margin-left: 12px;
-        width: 37%
+        margin-left: 14px;
+        width: 39%;
+    }
+    input#upload{
+        width: 48%;
     }
     input#linkimage {
-        width: 67%
+        width: 74%
     }
 }
 
@@ -58,7 +60,7 @@ div.dataTables_wrapper div.dataTables_filter label {
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 10px;
-    border: rgb(220, 220, 220) solid 1px;
+    border: rgba(0, 218, 49, 0.42) solid 1px;
     border-radius: 4px
 }
 

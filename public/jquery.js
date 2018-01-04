@@ -53,12 +53,6 @@ $(document).ready(function () {
             e.preventDefault();
             return false;
         }
-        if (e.keyCode == 37) {
-            var inputs = $(this).parents("form").eq(0).find(":input");
-            if (inputs[inputs.index(this) - 1] != null) {
-                inputs[inputs.index(this) - 1].focus();
-            }
-        }
     });
 
     socket.emit('send-suggest');
