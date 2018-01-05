@@ -7,7 +7,7 @@
                     <th>CODE</th>
                     <th>TÊN SẢN PHẨM</th>
                     <th>THỜI GIAN NHẬP</th>
-                    <th>GIÁ THÀNH</th>
+                    <th>GIÁ NHẬP</th>
                     <th>SỐ LƯỢNG</th>
                     <th>LOẠI SẢN PHẨM</th>
                     <!-- <th>ĐƠN VỊ</th> -->
@@ -36,7 +36,7 @@
                         <td id="date"  data-popup-open="popup-1"><%= h %>:<%= m %> - <%= d %>/<%= mo%>/<%= i.date.getFullYear() %></td>
                         <!-- <td style="display: none" id="image"><%= i.image %></td> -->
                         <td class="price" id="price"  data-popup-open="popup-1" style="text-align: right"><%= i.price_each %></td>
-                        <td id="quantity"  data-popup-open="popup-1"><%= i.quantity_in_stock %> <%= i.unit %></td>
+                        <td id="quantity"  data-popup-open="popup-1" style="text-align: right;padding-right: 33px"><%= i.quantity_in_stock %> <%= i.unit %></td>
                         <td id="cate"  data-popup-open="popup-1"><%= i.category %></td>
                         <!-- <td id="unit"  data-popup-open="popup-1"><%= i.unit %></td> -->
                         <td id="image"  data-popup-open="popup-1"><a target="_blank" href='<%= i.link_image %>'><%= i.link_image %></a></td>
