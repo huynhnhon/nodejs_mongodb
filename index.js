@@ -49,6 +49,10 @@ db.once('open', function () {
                 socket.emit('list-suggest', danhsach)
             })
         })
+        socket.on('request-update', function(id_product,update){
+            console.log(id_product);
+            console.log(update)
+        })
     })
 
     var storage = multer.diskStorage({

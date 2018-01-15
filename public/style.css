@@ -1,16 +1,14 @@
-
 @media (min-width: 1200px) {
-    .title-upload{
+    .title-upload {
         border: #8c8c8c solid 1px;
         border-right: none;
         font-weight: 600;
         padding: 3.5px 8px;
         margin-right: -5px;
     }
-
     img#preview {
-    height: 299px;
-}
+        height: 299px;
+    }
     input#name {
         margin-left: auto;
         width: 65%
@@ -23,7 +21,7 @@
         margin-left: 14px;
         width: 39%;
     }
-    input#upload{
+    input#upload {
         width: 48%;
     }
     input#linkimage {
@@ -35,10 +33,10 @@ body {
     background-image: url(https://tuhoc247.com/wp-content/uploads/2017/12/bg.jpg);
     background-repeat: repeat;
 }
-.row.content{
+
+.row.content {
     margin-top: 20px;
 }
-
 
 table#view {
     background: #0c0c0c;
@@ -126,7 +124,6 @@ footer {
 
 /* If you don't want the footer to be responsive, remove these media queries */
 
-
 @media (max-width: 600px) {
     .footer-distributed .footer-left,
     .footer-distributed .footer-right {
@@ -143,7 +140,7 @@ footer {
         max-width: 210px !important;
         padding: 9px !important
     }
-    .input-group-addon{
+    .input-group-addon {
         display: none !important
     }
     span.power {
@@ -155,6 +152,9 @@ footer {
     }
     .reset {
         display: none !important
+    }
+    .col-sm-12 {
+        padding: 0 !important
     }
 }
 
@@ -207,15 +207,52 @@ span.power {
     background: rgba(0, 0, 0, 0.75);
 }
 
+i.fa.fa-pencil:hover {
+    /* border: #dc3545 solid 1px; */
+    padding: 4px 5px;
+    border-radius: 50%;
+    color: #fff !important;
+    background: #dc3545;
+}
+i.fa.fa-pencil{
+    color: #0554a9;
+    cursor: pointer
+}
+i.fa.fa-check,i.fa.fa-times {
+    color: #fff;
+    background: #0554a9;
+    border-radius: 50%;
+    cursor: pointer
+}
+input.edit {
+    width: 65px;
+}
+
+i.fa.fa-check {
+    padding: 4px;
+    margin-right: 6px;
+    background: #009622;
+}
+i.fa.fa-times{
+    padding: 4px 5px;
+    background: #d82233;
+}
+a.update{
+    float: right
+}
 
 /* Inner */
-a.pop-n,a.pop-q {
+
+a.pop-n,
+a.pop-q {
     font-family: nunito;
     font-weight: 700;
-    color: #0e60b7 !important;
-}
-a.pop-q{
     color: #b90012 !important;
+}
+
+.edit-quantity {
+    margin-left: 10px;
+    cursor: pointer
 }
 
 .popup-inner {
